@@ -4,7 +4,7 @@ const server = process.env.URL_SERVER
 
 //otro modeo de usar firebase
 const admin = require('firebase-admin')
-const firebaseConf = require('./firebaseConf');
+const firebaseConf = require('../credenciales.json');
 admin.initializeApp({
     credential: admin.credential.cert(firebaseConf),
     databaseURL: `https://${process.env.PROJECT_ID}.firebaseio.com`
