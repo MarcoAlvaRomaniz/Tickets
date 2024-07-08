@@ -1,7 +1,7 @@
 //Llamado de express para el servidor
 const express = require('express');
 //importacion de la rutas de usuario
-const userRouter = require('./userRouers.js')
+const userRouter = require('./userRouters.js')
 
 
 function routerAPI(app){

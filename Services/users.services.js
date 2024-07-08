@@ -1,6 +1,6 @@
 //importacion de las bases de datos
 //importacion de firestore
-const {experimentalSetDeliveryMetricsExportedToBigQueryEnabled} = require('firebase/firebase-messaging-sw')
+const {experimentalSetDeliveryMetricsExportedToBigQueryEnabled} = require('firebase/messaging/sw')
 const {db} = require('../bd/firebase.js');
 //definicion de clases con varios objetos
 class User{
