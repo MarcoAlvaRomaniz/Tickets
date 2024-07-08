@@ -1,12 +1,12 @@
 const express = require('express');
 const router = express.Router();
-const { db } = require('../firebaseConfig');
+const { db } = require('./../bd/firebase.js');
 const { async } = require('@firebase/util');
 
 router.get('/',async(req,res) =>{
     const snapshot = await db.collection('user').get();
     const users = snapshot.docs.map(doc => ({id: doc.id, ...doc.data()}));
-    res.json(users);
+    res.json({mensaje:'ok'});
 
 })
 router.post('/',async(req,res) =>{

@@ -1,27 +1,25 @@
-// Suggested code may be subject to a license. Learn more: ~LicenseLog:1393978351.
+const routerAPI = require('./routers/index.js');
 const express = require('express');
-const cors = require('cors')
-// Suggested code may be subject to a license. Learn more: ~LicenseLog:2864940723.
-// Suggested code may be subject to a license. Learn more: ~LicenseLog:1652079927.
-const bodyParser = require('body-parser')
-//require('dotenv').config();
-//const { db } = require('./firebaseConfig');
 const app = express();
-const PORT = process.env.PORT || 5000;
-
+//manejo de archivos
+const fs = require('fs');
+//variable para envio de informacion
+const {send}=require('process');
+const port = process.env.PORT || 3000;
+const server =  require('http').Server(app);
+//Llamado de cors
+const cors = require('cors');
+const {logErrors, errorHandler}  = require('./middleware/error.handler.js');
+const { log } = require('console');
 app.use(cors());
-//Usar body-parser middleware para parsear cuerpos de solicitudes Json
-//app.use(bodyParser.json());
-//import routes
-//const userRouters = require('./routers/userRouers');
-//const computerRouters = require('./routers/computersRouters');
-//const ticketRouters= require('./routers/ticcketsRouters');
+app.use(express.json())
+routerAPI(app);
+app.use(logErrors);
+app.use(errorHandler);
+//inicio de estaticos para poder renderizar los archivos de imagen
+app.use('/uploads', express.static('uploads'));
 
-//Use routers
-//app.use('/api/users',userRouters);
-//app.use('/api/computers',computerRouters);
-//app.use('/api/tickets',ticketRouters);
-
-app.listen(PORT, () => {
-  console.log(`Servidor corriendo en el puerto: ${PORT}`)
-})
+// Iniciar el servidor y escuchar en el puerto especificado
+app.listen(port, () => {
+  console.log(`Servidor ejecutándose en http://localhost:${port}`);
+});
