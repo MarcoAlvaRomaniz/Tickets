@@ -20,8 +20,27 @@ router.get('/',async(req,res,next)=>{
         next(error);
     }
 })
+router.get('/:id',async(req,res,next)=>{
+    const { id }= req.params;
+    try{
+        const getUser = await user.getOne(id);
+        res.status(200).json(getUser)        
+    }catch(error){
+        next(error);
+    }
+})
+router.post('/',uploadNone.none(),async(req,res,next)=>{
+    try{
+        let data = req.body;
+        console.log('[Prueba de llegada]',data);
+        let newUser = await user.create(data);
+        res.status(201).json(newUser);
+    }catch(error){
+        next(error);
+    }
+})
 
-const app = express();
+//
 
 //export las rutas
 module.exports = router;
