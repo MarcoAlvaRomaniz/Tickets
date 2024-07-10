@@ -39,7 +39,32 @@ router.post('/',uploadNone.none(),async(req,res,next)=>{
         next(error);
     }
 })
-
+//definicion de una ruta com parametro id
+//uploadNone.none() indica que no habra archivo para subir
+//req,res,next req es la solicitud, res es la respuesta y next es lo que se ejecuta despues
+router.patch('/:id',uploadNone.none(),async(req,res,next)=>{
+    //extraer el id de los parametros de la solicitud si /123 solo toma el valor 123
+    const {id} = req.params;
+    //extraer el body de la solicitud
+    const {body} = req
+    try{
+        //actualizacion del usuario
+        const update = await user.update(id,body);
+        res.status(200).json(update);
+    } catch(error){
+        next(error);
+    }
+})
+//Ruta para eliminar un usuario
+router.delete('/:id',uploadNone.none(),async(req,res,next)=>{
+    const {id} = req.params
+    try{
+        const deleteUser = await user.delete(id);
+        res.status(200).json(deleteUser);
+    }catch(error){
+        next(error);
+    }
+})
 //
 
 //export las rutas

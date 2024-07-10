@@ -64,6 +64,20 @@ class User{
         
         
     }
+    async delete(id){
+        try{
+            await this.update(id,{status:'Baja'})
+            return{
+                success:true,
+                message:'Usuario Eliminado'
+            }
+        }catch(error){
+            return{
+                success:false,
+                message:'Error desconocido'
+            }
+        }
+    }
 
 }
 module.exports = User;
