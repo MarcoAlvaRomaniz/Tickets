@@ -23,5 +23,52 @@ class Computers{
             data:computer
         }
     }
+    //crear un equipo nuevo
+    async create(data){
+        const addNewComputer = await db.collection(this.collection).add(data);
+        if(addNewComputer.id){
+            return{
+                data:{
+                    ...data,id:addNewComputer.id
+                },
+                success:true,
+                message:'equipo creado con exito'
+            }
+        }else{
+            return{
+                success:false,
+                message:'Equipo no creado'
+            }
+        }
+    }
+//Actualizar una computadora
+    async update(id,newdata){
+        try{
+            await db.collection(this.collection).doc(id).update(newdata);
+            return{
+                success:true,
+                message:'Equipo actualizado exitodamente'
+            }
+        }catch(error){
+            return{
+                success:false,
+                message:'Error al actualizar el equipo'
+            }
+        }
+    }
+    async delete(id){
+        try{
+            await this.update(id,{status:'Baja'});
+            return{
+                success:true,
+                message:'Equipo eliminado correctamente'
+            }
+        }catch(error){
+            return{
+                success:false,
+                message:'Errro al eliminar el equipo'
+            }
+        }
+    }
 }
 module.exports = Computers;

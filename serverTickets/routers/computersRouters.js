@@ -30,5 +30,35 @@ router.get('/:id',async(req,res,next)=>{
         next(error)
     }
 })
+//Ruta para crear equipo
+router.post('/',uploadNone.none(),async(req,res,next)=>{
+    try{
+        let data = req.body;
+        let newComputer = await computers.create(data);
+        res.status(201).json(newComputer);
+    }catch(error){
+        next(error)
+    }
+})
+//ruta para actualizar un equipo
+router.patch('/:id',uploadNone.none(),async(req,res,nexto)=>{
+    const {id}=req.params;
+    const {body}= req;
+    try{
+        const updateComputer = await computers.update(id,body);
+        res.status(200).json(updateComputer);
+    }catch(error){
+        next(error);
+    }
+})
+router.detele('/:id',uploadNone.none(),async(req,res,next)=>{
+    const {id} = req.params;
+    try{
+        const deleteComputer = await computers.delete(id);
+        res.status(200).json(deleteComputer);
+    }catch(error){
+        next(error);
+    }
+})
 //export las rutas
 module.exports = router;
