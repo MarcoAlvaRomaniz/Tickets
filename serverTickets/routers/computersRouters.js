@@ -41,7 +41,7 @@ router.post('/',uploadNone.none(),async(req,res,next)=>{
     }
 })
 //ruta para actualizar un equipo
-router.patch('/:id',uploadNone.none(),async(req,res,nexto)=>{
+router.patch('/:id',uploadNone.none(),async(req,res,next)=>{
     const {id}=req.params;
     const {body}= req;
     try{
@@ -51,8 +51,8 @@ router.patch('/:id',uploadNone.none(),async(req,res,nexto)=>{
         next(error);
     }
 })
-router.detele('/:id',uploadNone.none(),async(req,res,next)=>{
-    const {id} = req.params;
+router.delete('/:id',uploadNone.none(),async(req,res,next)=>{
+    const {id}=req.params;
     try{
         const deleteComputer = await computers.delete(id);
         res.status(200).json(deleteComputer);
