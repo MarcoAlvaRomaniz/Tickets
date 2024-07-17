@@ -1,13 +1,6 @@
 import './App.css';
-<<<<<<< HEAD
-import { useState } from "react"
-import Axios from "axios";
-
-
-=======
 import { useState } from "react";
 import Axios from "axios";
->>>>>>> 6eca4f6a (Consulta de usuarios)
 
 function App() {
   const [nombre,setNombre]= useState("");
@@ -16,17 +9,6 @@ function App() {
   const [cargo,setCargo]= useState("");
   const [anios,setAnios]= useState(0);
 
-<<<<<<< HEAD
-  const add = () =>{
-    Axios.post("https://3000-idx-tickets-1720194196165.cluster-vyr53kd25jc2yvngldrwyq6zc4.cloudworkstations.dev/api/v1/users/",{
-      nombre:nombre,
-      edad:edad,
-      pais:pais,
-      cargo:cargo,
-      anios:anios
-    }).then(()=>{
-      alert("Empleado registrado");
-=======
   const [empleadosList, setEmpleados]= useState([]);
   
   const add = ()=>{
@@ -44,7 +26,6 @@ function App() {
   const getEmpleados = ()=>{
     Axios.get("http://localhost:3000/api/v1/users").then((response)=>{
       setEmpleados(response.data);
->>>>>>> 6eca4f6a (Consulta de usuarios)
     })
   }
 
