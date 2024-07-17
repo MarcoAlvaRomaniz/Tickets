@@ -1,4 +1,5 @@
 const routerAPI = require('./routers/index.js');
+//referencia de express
 const express = require('express');
 const app = express();
 //manejo de archivos
