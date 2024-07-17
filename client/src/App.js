@@ -1,5 +1,6 @@
 import './App.css';
 import { useState } from "react"
+import Axios from "axios";
 
 
 
@@ -10,8 +11,16 @@ function App() {
   const [cargo,setCargo]= useState("");
   const [anios,setAnios]= useState(0);
 
-  const mostrarDatos = ()=>{
-    alert(nombre)
+  const add = () =>{
+    Axios.post("https://3000-idx-tickets-1720194196165.cluster-vyr53kd25jc2yvngldrwyq6zc4.cloudworkstations.dev/api/v1/users/",{
+      nombre:nombre,
+      edad:edad,
+      pais:pais,
+      cargo:cargo,
+      anios:anios
+    }).then(()=>{
+      alert("Empleado registrado");
+    })
   }
 
   return (
@@ -43,7 +52,7 @@ function App() {
         }}
         type="number"></input></label>
 
-        <button onClick={mostrarDatos}>Registrar</button>
+        <button onClick={add}>Registrar</button>
       </div>
     </div>
   );

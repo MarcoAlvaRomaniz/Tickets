@@ -12,7 +12,7 @@ const cors = require('cors');
 const {logErrors, errorHandler}  = require('./middleware/error.handler.js');
 const { log } = require('console');
 app.use(cors());
-app.use(express.json())
+app.use(express.json());
 routerAPI(app);
 app.use(logErrors);
 app.use(errorHandler);
