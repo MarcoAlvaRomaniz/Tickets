@@ -4,7 +4,7 @@ const {db} = require('../bd/firebase.js');
 //definicion de clases con varios objetos
 class Computers{
     constructor(){
-        this.collection = 'computers'
+        this.collection = 'equipos'
     }
     async getAll(){
         const getComputers = await db.collection(this.collection).get();
@@ -42,8 +42,8 @@ class Computers{
         }
     }
 //Actualizar una computadora
-    async update(id,newdata){
-        try{
+    async update(id,newdata,userData){
+        try{            
             await db.collection(this.collection).doc(id).update(newdata);
             return{
                 success:true,
@@ -52,7 +52,7 @@ class Computers{
         }catch(error){
             return{
                 success:false,
-                message:'Error al actualizar el equipo'
+                message:Error `al actualizar el equipo ${error}`
             }
         }
     }
