@@ -57,6 +57,7 @@ class User {
     }
 
     async update(id, newdata) {
+        console.log(id)
         try {
             await db.collection(this.collection).doc(id).update(newdata);
             return {
