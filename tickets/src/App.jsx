@@ -1,35 +1,50 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import { useState } from 'react'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import ReactDOM  from 'react';
+import Usuarios from './Usuarios';
+import Computadoras from './Computadoras';
+
+
 
 function App() {
-  const [count, setCount] = useState(0)
-
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+  const [view, setView]=useState('');
+  
+  return(
+    <div className = 'container' >
+      <div className="d-flez">
+        <div className="sidebar p-2">
+          <ul className="btn-group-vertical list-unstyled" role="group">
+            <li className="btn btn-dark">
+                Menu
+            </li>
+            <li className="btn btn-secondary">
+              <a onClick={()=>setView('usuarios')}>
+                Usuarios
+              </a>
+            </li>
+            <li className="btn btn-secondary">
+              <a onClick={()=>setView('computadoras')}>
+                Computadoras
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div className="conten p-3">
+          {view ==='usuarios' && (
+            <>
+              <Usuarios />
+            </>
+          )}
+          {view === 'computadoras' && 
+          <>
+           <Computadoras />
+          </>
+          }
+        </div>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    </div>
   )
 }
 
-export default App
+export default App;
