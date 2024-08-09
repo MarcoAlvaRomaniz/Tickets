@@ -12,7 +12,7 @@ function App() {
   
   return(
     <div className = 'container' >
-      <div className="d-flez">
+      <div className="d-flex">
         <div className="sidebar p-2">
           <ul className="btn-group-vertical list-unstyled" role="group">
             <li className="btn btn-dark">
